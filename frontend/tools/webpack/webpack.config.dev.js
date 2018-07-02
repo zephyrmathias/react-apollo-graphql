@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const DotEnvPlugin = require('dotenv-webpack');
 
 const { HotModuleReplacementPlugin } = webpack;
 
@@ -11,7 +12,7 @@ const config = {
     './src/client/index.jsx',
   ],
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.join(process.cwd(), 'dist'),
     publicPath: '/',
   },
@@ -41,7 +42,22 @@ const config = {
   },
   plugins: [
     new HotModuleReplacementPlugin(),
+    new DotEnvPlugin({
+      path: path.join(process.cwd(), '.env.dev'),
+    }),
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
   resolve: {
     extensions: ['.js', '.jsx'],
   },

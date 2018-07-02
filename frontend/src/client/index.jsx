@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter } from 'react-router-dom';
 import 'normalize.css/normalize.css';
+import client from './apollo';
 import App from './components/App';
 
 const Application = (
   <AppContainer>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ApolloProvider>
   </AppContainer>
 );
 

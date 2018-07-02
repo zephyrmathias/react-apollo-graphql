@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components: <StyledHeader /> should render correctly 1`] = `
+.c0 {
+  background: pink;
+}
+
+<div
+  className="c0"
+/>
+`;

@@ -24,7 +24,8 @@ const renderHtml = (req) => {
     </head>
     <body>
       <div id="app">${content}</div>
-      <script async src="/bundle.js"></script>
+      <script async src="/vendors.js"></script>
+      <script async src="/main.js"></script>
     </body>
     </html>
   `;

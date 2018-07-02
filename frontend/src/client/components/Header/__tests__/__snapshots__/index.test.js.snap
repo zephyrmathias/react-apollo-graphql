@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components: <Header /> should render correctly 1`] = `
+<styled.div>
+  <NavLink
+    activeClassName="active"
+    aria-current="page"
+    to="/"
+  >
+    Home
+  </NavLink>
+</styled.div>
+`;

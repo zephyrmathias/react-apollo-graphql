@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components: <App /> should render correctly 1`] = `
+<div>
+  <Header />
+  <div>
+    App
+  </div>
+  <AppRoutes />
+</div>
+`;
