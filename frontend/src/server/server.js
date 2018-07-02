@@ -7,7 +7,7 @@ const app = express();
 setUpMiddlewares(app);
 
 app.get('*', (req, res) => {
-  const html = renderHtml();
+  const html = renderHtml(req);
   res.send(html);
 });
 

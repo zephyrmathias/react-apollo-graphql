@@ -1,10 +1,14 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
 import App from '../../client/components/App';
 
-const renderHtml = () => {
+const renderHtml = (req) => {
+  const context = {};
   const Application = (
-    <App />
+    <StaticRouter location={req.path} context={context}>
+      <App />
+    </StaticRouter>
   );
 
   const content = renderToString(Application);

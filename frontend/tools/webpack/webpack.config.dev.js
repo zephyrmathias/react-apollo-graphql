@@ -30,6 +30,13 @@ const config = {
           ],
         },
       },
+      {
+        test: /\.s?css/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
     ],
   },
   plugins: [
