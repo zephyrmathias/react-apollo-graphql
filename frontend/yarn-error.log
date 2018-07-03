@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.8.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add note-fetch
+  /usr/local/Cellar/node/9.8.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add ssrForceFetchDelay: 100
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -37,6 +37,7 @@ npm manifest:
       "express": "^4.16.3",
       "graphql": "^0.13.2",
       "graphql-tag": "^2.9.2",
+      "node-fetch": "^2.1.2",
       "normalize.css": "^8.0.0",
       "prop-types": "^15.6.2",
       "react": "^16.4.1",
@@ -4719,6 +4720,10 @@ Lockfile:
       encoding "^0.1.11"
       is-stream "^1.0.1"
   
+  node-fetch@^2.1.2:
+    version "2.1.2"
+    resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
+  
   node-int64@^0.4.0:
     version "0.4.0"
     resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
@@ -7261,14 +7266,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.8.tgz#1ea93995bf098754a58215a1e0a7309e5749ec42"
 
 Trace: 
-  Error: https://registry.yarnpkg.com/note-fetch: Not found
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:65019:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:132430:22)
-      at Request.emit (events.js:180:13)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:133413:10)
-      at Request.emit (events.js:180:13)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:133333:12)
-      at Object.onceWrapper (events.js:272:13)
-      at IncomingMessage.emit (events.js:185:15)
-      at endReadableNT (_stream_readable.js:1101:12)
-      at process._tickCallback (internal/process/next_tick.js:114:19)
+  Error: Invalid URL
+      at module.exports.module.exports (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:126447:9)
+      at urlParts (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:31059:75)
+      at NpmRegistry.isRequestToRegistry (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:31098:19)
+      at NpmRegistry.request (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:31126:29)
+      at NpmResolver.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:51476:51)
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:98:30)
+      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:116:14
+      at new Promise (<anonymous>)
+      at new F (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:23451:28)

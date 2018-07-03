@@ -1,11 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter } from 'react-router-dom';
 import 'normalize.css/normalize.css';
-import client from './apollo';
 import App from './components/App';
+
+/**
+ * need to move this to ./apollo/links.js
+ * and handle errorLinks etc.
+ */
+const httpLink = new HttpLink({
+  uri: `http://localhost:${process.env.SERVER_PORT}/graphql`,
+});
+
+const cache = new InMemoryCache().restore(window.__APOLLO_STATE__);
+
+const client = new ApolloClient({
+  link: httpLink,
+  cache,
+});
 
 const Application = (
   <AppContainer>
