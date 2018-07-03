@@ -1,10 +1,11 @@
 /**
  *
  * @param {*} content
+ * @param {*} styles
  * @param {*} client
  */
 
-const Html = (content, client) => {
+const Html = (content, styles, client) => {
   const initialState = client.extract();
   return `
     <!DOCTYPE html>
@@ -14,6 +15,7 @@ const Html = (content, client) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
       <title>Document</title>
+      ${styles}
     </head>
     <body>
       <div id="app">${content}</div>

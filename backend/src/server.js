@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
+import morgan from 'morgan';
 import cors from 'cors';
 import {
   graphqlExpress,
@@ -20,9 +21,13 @@ if (process.env.NODE_ENV === 'development') {
 
 const app = express();
 
+app.use(morgan('combined'));
+
+app.use(bodyParser.json());
+
 app.use(cors());
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use('/graphql', graphqlExpress({ schema }));
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 

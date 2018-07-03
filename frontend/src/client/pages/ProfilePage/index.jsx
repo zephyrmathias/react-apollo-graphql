@@ -20,7 +20,9 @@ const ProfilePage = () => (
       return (
         <div>
           {channels.map(channel => (
-            <div key={channel.id}>{channel.name}</div>
+            <div key={channel.id}>
+              {channel.name}
+            </div>
           ))}
         </div>
       );
