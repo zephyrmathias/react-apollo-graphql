@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import express from 'express';
 import setUpMiddlewares from './middlewares';
 import renderHtml from './helpers/renderHtml';
@@ -6,8 +7,9 @@ const app = express();
 
 setUpMiddlewares(app);
 
-app.get('*', (req, res) => {
-  const html = renderHtml(req);
+app.get('*', async (req, res) => {
+  // need to implement try catch
+  const html = await renderHtml(req);
   res.send(html);
 });
 

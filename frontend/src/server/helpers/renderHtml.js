@@ -1,34 +1,40 @@
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import {
+  ApolloProvider,
+  renderToStringWithData,
+} from 'react-apollo';
 import { StaticRouter } from 'react-router-dom';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import fetch from 'node-fetch';
+// import client from './apollo';
 import App from '../../client/components/App';
+import Html from './html/template';
 
-const renderHtml = (req) => {
+const renderHtml = async (req) => {
+  // need to implement try catch
+  const httpLink = createHttpLink({
+    uri: process.env.GRAPHQL_URL,
+    fetch,
+  });
+  const cache = new InMemoryCache();
+  const client = new ApolloClient({
+    ssrMode: true,
+    link: httpLink,
+    cache,
+  });
   const context = {};
   const Application = (
-    <StaticRouter location={req.path} context={context}>
-      <App />
-    </StaticRouter>
+    <ApolloProvider client={client}>
+      <StaticRouter location={req.path} context={context}>
+        <App />
+      </StaticRouter>
+    </ApolloProvider>
   );
-
-  const content = renderToString(Application);
-
-  return `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-      <title>Document</title>
-    </head>
-    <body>
-      <div id="app">${content}</div>
-      <script async src="/vendors.js"></script>
-      <script async src="/main.js"></script>
-    </body>
-    </html>
-  `;
+  const content = await renderToStringWithData(Application);
+  const html = Html(content, client);
+  return html;
 };
 
 export default renderHtml;

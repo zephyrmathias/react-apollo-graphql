@@ -1,8 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
-const DotEnvPlugin = require('dotenv-webpack');
 
-const { HotModuleReplacementPlugin } = webpack;
+const {
+  HotModuleReplacementPlugin,
+  DefinePlugin,
+} = webpack;
+
+require('dotenv').config({
+  path: path.join(process.cwd(), '.env.dev'),
+});
 
 const config = {
   mode: 'development',
@@ -42,8 +48,16 @@ const config = {
   },
   plugins: [
     new HotModuleReplacementPlugin(),
-    new DotEnvPlugin({
-      path: path.join(process.cwd(), '.env.dev'),
+    /**
+     * use DefinePlugin instead of dotenv-webpack because
+     * dotenv-webpack doesn't replace process.env on server-side
+     * it replaces only client-side
+     */
+    new DefinePlugin({
+      'process.env': {
+        SERVER_PORT: JSON.stringify(process.env.SERVER_PORT),
+        GRAPHQL_URL: JSON.stringify(process.env.GRAPHQL_URL),
+      },
     }),
   ],
   optimization: {

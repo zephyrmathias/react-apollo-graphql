@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import {
   graphqlExpress,
   graphiqlExpress,
@@ -18,6 +19,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const app = express();
+
+app.use(cors());
 
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.8.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run test
+  /usr/local/Cellar/node/9.8.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add note-fetch
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -25,12 +25,18 @@ npm manifest:
       "test": "jest --coverage --config=jest.config.json"
     },
     "dependencies": {
+      "apollo-cache-inmemory": "^1.2.5",
+      "apollo-client": "^2.3.5",
+      "apollo-link-http": "^1.5.4",
       "axios": "^0.18.0",
       "babel-polyfill": "^6.26.0",
       "babel-register": "^6.26.0",
       "cross-env": "^5.2.0",
+      "dotenv": "^6.0.0",
       "eventsource-polyfill": "^0.9.6",
       "express": "^4.16.3",
+      "graphql": "^0.13.2",
+      "graphql-tag": "^2.9.2",
       "normalize.css": "^8.0.0",
       "prop-types": "^15.6.2",
       "react": "^16.4.1",
@@ -48,6 +54,7 @@ npm manifest:
       "babel-preset-env": "^1.7.0",
       "babel-preset-react": "^6.24.1",
       "css-loader": "^0.28.11",
+      "dotenv-webpack": "^1.5.7",
       "enzyme": "^3.3.0",
       "enzyme-adapter-react-16": "^1.1.1",
       "enzyme-to-json": "^3.3.4",
@@ -166,9 +173,21 @@ Lockfile:
       lodash "^4.2.0"
       to-fast-properties "^2.0.0"
   
+  "@types/async@2.0.49":
+    version "2.0.49"
+    resolved "https://registry.yarnpkg.com/@types/async/-/async-2.0.49.tgz#92e33d13f74c895cb9a7f38ba97db8431ed14bc0"
+  
+  "@types/graphql@0.12.6":
+    version "0.12.6"
+    resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.12.6.tgz#3d619198585fcabe5f4e1adfb5cf5f3388c66c13"
+  
   "@types/node@*":
     version "10.5.1"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.1.tgz#d578446f4abff5c0b49ade9b4e5274f6badaadfc"
+  
+  "@types/zen-observable@^0.5.3":
+    version "0.5.4"
+    resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.5.4.tgz#b863a4191e525206819e008097ebf0fb2e3a1cdc"
   
   "@webassemblyjs/ast@1.5.12":
     version "1.5.12"
@@ -427,6 +446,67 @@ Lockfile:
     dependencies:
       micromatch "^3.1.4"
       normalize-path "^2.1.1"
+  
+  apollo-cache-inmemory@^1.2.5:
+    version "1.2.5"
+    resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.2.5.tgz#b57951947b1db486a60db11c7dcfc6b112e5abe9"
+    dependencies:
+      apollo-cache "^1.1.12"
+      apollo-utilities "^1.0.16"
+      graphql-anywhere "^4.1.14"
+  
+  apollo-cache@^1.1.12:
+    version "1.1.12"
+    resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.12.tgz#070015c9051b2ebb69676beb10466a9c0b259f91"
+    dependencies:
+      apollo-utilities "^1.0.16"
+  
+  apollo-client@^2.3.5:
+    version "2.3.5"
+    resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.3.5.tgz#74b62bd7e7bd7030d01c35e2e221ed65a807af23"
+    dependencies:
+      "@types/zen-observable" "^0.5.3"
+      apollo-cache "^1.1.12"
+      apollo-link "^1.0.0"
+      apollo-link-dedup "^1.0.0"
+      apollo-utilities "^1.0.16"
+      symbol-observable "^1.0.2"
+      zen-observable "^0.8.0"
+    optionalDependencies:
+      "@types/async" "2.0.49"
+  
+  apollo-link-dedup@^1.0.0:
+    version "1.0.9"
+    resolved "https://registry.yarnpkg.com/apollo-link-dedup/-/apollo-link-dedup-1.0.9.tgz#3c4e4af88ef027cbddfdb857c043fd0574051dad"
+    dependencies:
+      apollo-link "^1.2.2"
+  
+  apollo-link-http-common@^0.2.4:
+    version "0.2.4"
+    resolved "https://registry.yarnpkg.com/apollo-link-http-common/-/apollo-link-http-common-0.2.4.tgz#877603f7904dc8f70242cac61808b1f8d034b2c3"
+    dependencies:
+      apollo-link "^1.2.2"
+  
+  apollo-link-http@^1.5.4:
+    version "1.5.4"
+    resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.5.4.tgz#b80b7b4b342c655b6a5614624b076a36be368f43"
+    dependencies:
+      apollo-link "^1.2.2"
+      apollo-link-http-common "^0.2.4"
+  
+  apollo-link@^1.0.0, apollo-link@^1.2.2:
+    version "1.2.2"
+    resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.2.tgz#54c84199b18ac1af8d63553a68ca389c05217a03"
+    dependencies:
+      "@types/graphql" "0.12.6"
+      apollo-utilities "^1.0.0"
+      zen-observable-ts "^0.8.9"
+  
+  apollo-utilities@^1.0.0, apollo-utilities@^1.0.16:
+    version "1.0.16"
+    resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.16.tgz#787310df4c3900a68c0beb3d351c59725a588cdb"
+    dependencies:
+      fast-json-stable-stringify "^2.0.0"
   
   append-transform@^1.0.0:
     version "1.0.0"
@@ -2258,6 +2338,20 @@ Lockfile:
     dependencies:
       is-obj "^1.0.0"
   
+  dotenv-webpack@^1.5.7:
+    version "1.5.7"
+    resolved "https://registry.yarnpkg.com/dotenv-webpack/-/dotenv-webpack-1.5.7.tgz#c44395ab21d1fd28d79a90942a7b14b1debd145f"
+    dependencies:
+      dotenv "^5.0.1"
+  
+  dotenv@^5.0.1:
+    version "5.0.1"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-5.0.1.tgz#a5317459bd3d79ab88cff6e44057a6a3fbb1fcef"
+  
+  dotenv@^6.0.0:
+    version "6.0.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
+  
   duplexer3@^0.1.4:
     version "0.1.4"
     resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -3102,6 +3196,22 @@ Lockfile:
     version "4.1.11"
     resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
   
+  graphql-anywhere@^4.1.14:
+    version "4.1.14"
+    resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-4.1.14.tgz#89664cb885faaec1cbc66905351fadae8cc85a04"
+    dependencies:
+      apollo-utilities "^1.0.16"
+  
+  graphql-tag@^2.9.2:
+    version "2.9.2"
+    resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.9.2.tgz#2f60a5a981375f430bf1e6e95992427dc18af686"
+  
+  graphql@^0.13.2:
+    version "0.13.2"
+    resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.2.tgz#4c740ae3c222823e7004096f832e7b93b2108270"
+    dependencies:
+      iterall "^1.2.1"
+  
   growly@^1.3.0:
     version "1.3.0"
     resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
@@ -3754,6 +3864,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-1.3.0.tgz#2f322e81e1d9520767597dca3c20a0cce89a3554"
     dependencies:
       handlebars "^4.0.3"
+  
+  iterall@^1.2.1:
+    version "1.2.2"
+    resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
   
   jest-changed-files@^23.2.0:
     version "23.2.0"
@@ -6443,6 +6557,10 @@ Lockfile:
       sax "~1.2.1"
       whet.extend "~0.9.9"
   
+  symbol-observable@^1.0.2:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
+  
   symbol-tree@^3.2.2:
     version "3.2.2"
     resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.2.tgz#ae27db38f660a7ae2e1c3b7d1bc290819b8519e6"
@@ -7131,18 +7249,26 @@ Lockfile:
       cliui "^2.1.0"
       decamelize "^1.0.0"
       window-size "0.1.0"
+  
+  zen-observable-ts@^0.8.9:
+    version "0.8.9"
+    resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.9.tgz#d3c97af08c0afdca37ebcadf7cc3ee96bda9bab1"
+    dependencies:
+      zen-observable "^0.8.0"
+  
+  zen-observable@^0.8.0:
+    version "0.8.8"
+    resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.8.tgz#1ea93995bf098754a58215a1e0a7309e5749ec42"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 1
-  Command: sh
-  Arguments: -c jest --coverage --config=jest.config.json
-  Directory: /Users/wuttichaijunsoontraporn/Desktop/Code/react-apollo-graphql/frontend
-  Output:
-  
-      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
-      at ChildProcess.emit (events.js:180:13)
-      at maybeClose (internal/child_process.js:936:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
+  Error: https://registry.yarnpkg.com/note-fetch: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:65019:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:132430:22)
+      at Request.emit (events.js:180:13)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:133413:10)
+      at Request.emit (events.js:180:13)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:133333:12)
+      at Object.onceWrapper (events.js:272:13)
+      at IncomingMessage.emit (events.js:185:15)
+      at endReadableNT (_stream_readable.js:1101:12)
+      at process._tickCallback (internal/process/next_tick.js:114:19)

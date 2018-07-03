@@ -1,14 +1,17 @@
 import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
+import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import fetch from 'node-fetch';
 
-const httpLink = new HttpLink({
+const httpLink = createHttpLink({
   uri: process.env.GRAPHQL_URL,
+  fetch,
 });
 
-const cache = new InMemoryCache().restore(window.__APOLLO_STATE__);
+const cache = new InMemoryCache();
 
 const client = new ApolloClient({
+  ssrMode: true,
   link: httpLink,
   cache,
 });
