@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import GET_CHANNELS from '../queries';
 
 const ADD_CHANNEL = gql`
   mutation($name: String!) {
@@ -10,6 +11,15 @@ const ADD_CHANNEL = gql`
     }
   }
 `;
+
+const update = (
+  store,
+  { data: { addChannel } },
+) => {
+  const data = store.readQuery({ query: GET_CHANNELS });
+  data.channels.push(addChannel);
+  store.writeQuery({ query: GET_CHANNELS, data });
+};
 
 class AddChannel extends React.Component {
   constructor(props) {
@@ -24,6 +34,7 @@ class AddChannel extends React.Component {
      * need to call preventDefault before
      * asynchronous function
      * to make it work as expected
+     * and to stop warning about synthetic event
      */
     event.preventDefault();
     await addChannel();
@@ -43,15 +54,20 @@ class AddChannel extends React.Component {
     return (
       <Mutation
         mutation={ADD_CHANNEL}
-        variables={{
-          name: channelName,
+        variables={{ name: channelName }}
+        update={update}
+        optimisticResponse={{
+          addChannel: {
+            _id: Math.round(Math.random()).toString(),
+            name: channelName,
+            __typename: 'Channel',
+          },
         }}
       >
-        {(addChannel, { data, loading, error }) => (
+        {(addChannel, { error }) => (
           <div>
-            {error && (
-              <div>error</div>
-            )}
+            {error && (<div>error</div>)
+            }
             <form onSubmit={e => this._onHandleSubmit(e, addChannel)}>
               <input
                 type="text"

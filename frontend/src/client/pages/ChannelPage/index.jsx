@@ -1,18 +1,9 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import Loading from '../../components/Loading';
 import AddChannel from './AddChannel';
 import ChannelList from './ChannelList';
-
-const GET_CHANNELS = gql`
-  {
-    channels {
-      _id
-      name
-    }
-  }
-`;
+import GET_CHANNELS from './queries';
 
 const ChannelPage = () => (
   <div>
