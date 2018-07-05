@@ -18,7 +18,7 @@ const ChannelPage = () => (
   <div>
     <AddChannel />
     <Query query={GET_CHANNELS}>
-      {({ loading, error, data }) => {
+      {({ data, loading, error }) => {
         if (loading) return <Loading />;
         if (error) return `error ${error.message}`;
         const { channels } = data;

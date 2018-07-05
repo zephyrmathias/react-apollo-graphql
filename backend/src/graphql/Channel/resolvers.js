@@ -7,6 +7,16 @@ const resolvers = {
       return channels;
     },
   },
+
+  Mutation: {
+    addChannel: async (root, { name }) => {
+      const channel = new Channel();
+      channel.name = name;
+      const result = await channel.save();
+      return result;
+    },
+  },
+
 };
 
 export default resolvers;
