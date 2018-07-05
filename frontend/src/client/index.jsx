@@ -14,7 +14,7 @@ import App from './components/App';
  * and handle errorLinks etc.
  */
 const httpLink = new HttpLink({
-  uri: `http://localhost:${process.env.SERVER_PORT}/graphql`,
+  uri: '/graphql',
 });
 
 const cache = new InMemoryCache().restore(window.__APOLLO_STATE__);

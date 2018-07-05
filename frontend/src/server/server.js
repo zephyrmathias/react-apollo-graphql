@@ -12,7 +12,6 @@ setUpMiddlewares(app);
  * use http-proxy to change origin
  * to stop getting status code 204 (empty response)
  */
-
 const apiProxy = proxy({
   target: process.env.GRAPHQL_URL,
   changeOrigin: true,

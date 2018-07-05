@@ -1,21 +1,12 @@
-import {
-  makeExecutableSchema,
-  addMockFunctionsToSchema,
-} from 'graphql-tools';
+import { mergeSchemas } from 'graphql-tools';
+import ChannelSchema from './Channel';
+import MessageSchema from './Message';
 
-const typeDefs = `
-  type Channel {
-    id: ID!
-    name: String
-  }
+const rootSchema = mergeSchemas({
+  schemas: [
+    ChannelSchema,
+    MessageSchema,
+  ],
+});
 
-  type Query {
-    channels: [Channel]
-  }
-`;
-
-const schema = makeExecutableSchema({ typeDefs });
-
-addMockFunctionsToSchema({ schema });
-
-export default schema;
+export default rootSchema;

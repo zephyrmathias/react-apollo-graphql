@@ -1,12 +1,11 @@
+import 'babel-polyfill';
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
-import {
-  graphqlExpress,
-  graphiqlExpress,
-} from 'apollo-server-express';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import connectDB from './db/connectDB';
 import schema from './graphql/schema';
 
 if (process.env.NODE_ENV === 'development') {
@@ -18,6 +17,8 @@ if (process.env.NODE_ENV === 'development') {
     path: path.join(process.cwd(), '.env.prod'),
   });
 }
+
+connectDB(process.env.MONGODB_URL);
 
 const app = express();
 

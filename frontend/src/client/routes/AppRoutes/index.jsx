@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from '../../pages/HomePage';
-import ProfilePage from '../../pages/ProfilePage';
+import ChannelPage from '../../pages/ChannelPage';
 
 const AppRoutes = () => (
   <Switch>
     <Route path="/" exact component={HomePage} />
-    <Route path="/profile" exact component={ProfilePage} />
+    <Route path="/profile" exact component={ChannelPage} />
   </Switch>
 );
 
