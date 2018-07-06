@@ -6,7 +6,7 @@ import ChannelPage from '../../pages/ChannelPage';
 const AppRoutes = () => (
   <Switch>
     <Route path="/" exact component={HomePage} />
-    <Route path="/profile" exact component={ChannelPage} />
+    <Route path="/channels" exact component={ChannelPage} />
   </Switch>
 );
 

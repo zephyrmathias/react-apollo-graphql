@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-const MessageSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const MessageSchema = new Schema({
   text: {
     type: String,
     required: true,
@@ -11,6 +13,6 @@ const MessageSchema = new mongoose.Schema({
   },
 });
 
-const MessageModel = mongoose.model('Channel', MessageSchema);
+const MessageModel = mongoose.model('Message', MessageSchema);
 
 export default MessageModel;

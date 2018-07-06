@@ -4,12 +4,8 @@ import StyledHeader from './StyledHeader';
 
 const Header = () => (
   <StyledHeader>
-    <NavLink to="/">
-      Home
-    </NavLink>
-    <NavLink to="/profile">
-      Profile
-    </NavLink>
+    <NavLink to="/">Home</NavLink>
+    <NavLink to="/channels">Channels</NavLink>
   </StyledHeader>
 );
 
